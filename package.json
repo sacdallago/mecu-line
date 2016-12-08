@@ -1,0 +1,64 @@
+{
+  "name": "mecu-viz",
+  "description": "Visualization of protein melting curves",
+  "version": "0.1.0",
+  "homepage": "https://github.com/sacdallago/mecu-viz",
+  "author": {
+    "name": "Christian Dallago",
+    "email": "code@dallago.us"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sacdallago/mecu-viz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sacdallago/mecu-viz/issues"
+  },
+  "license": "Apache-2.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo 'Error: no test specified' && exit 1",
+    "build": "mkdirp build && browserify -r ./:mecu-viz -o build/viz.js",
+    "build-browser": "npm run build",
+    "prepublish": "npm run build",
+    "watch": "watchify -r ./:mecu-viz -v -o build/viz.js",
+    "lint": "jshint -c .jshintrc lib --verbose",
+    "w": "prunner \"npm run sniper\" \"npm run watch\" \"npm run watch-css\"",
+    "sniper": "sniper .",
+    "install": "undefined && npm run css",
+    "css": "parcelify ./ -c build/bundle.css",
+    "watch-css": "parcelify -w ./ -c build/bundle.css --loglevel verbose"
+  },
+  "dependencies": {
+    "d3": "^4.4.0"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.0",
+    "browserify": "6.x",
+    "sniper": "0.x",
+    "watchify": "^1.0.6",
+    "prunner": "1.x",
+    "parcelify": "0.x",
+    "jshint": "^2.5.10"
+  },
+  "sniper": {
+    "js": [
+      "/build/viz.js"
+    ],
+    "css": [
+      "/build/bundle.css"
+    ],
+    "snippets": [
+      "examples"
+    ],
+    "first": "simple"
+  },
+  "keywords": [
+    "biojs",
+    "visualization",
+    "js",
+    "bioinformatics",
+    "protein",
+    "biojs"
+  ]
+}
