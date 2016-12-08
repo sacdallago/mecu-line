@@ -18,7 +18,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo 'Error: no test specified' && exit 1",
-    "build": "mkdirp build && browserify -r ./:mecu-viz -o build/viz.js",
+    "build": "browserify -r ./:mecu -o build/viz.js",
     "build-browser": "npm run build",
     "prepublish": "npm run build",
     "watch": "watchify -r ./:mecu-viz -v -o build/viz.js",
