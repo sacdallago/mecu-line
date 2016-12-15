@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <style>
+            .mecu-el {
+                width: 300px;
+                height: 300px;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>TEST</div>
+        <div style="display:flex">
+            <div id="no-axis" class="mecu-el"></div>
+            <div id="axis" class="mecu-el"></div>
+            <div id="no-axis-multi" class="mecu-el"></div>
+            <div id="axis-multi" class="mecu-el"></div>
+        </div>
+
+        <script src="../build/mecu.js"></script>
+
+        <script>
+            const data = [{
+                "protein" : "SOMEP",
+                "experiment" : "EXP1",
+                "reads" : [{
+                    "temp": 33,
+                    "soluble": 100
+                },{
+                    "temp": 34,
+                    "soluble": 100
+                },{
+                    "temp": 35,
+                    "soluble": 100
+                },{
+                    "temp": 36,
+                    "soluble": 100
+                }, {
+                    "temp": 37,
+                    "soluble": 70
+                }, {
+                    "temp": 39,
+                    "soluble": 50
+                }, {
+                    "temp": 41,
+                    "soluble": 20
+                }, {
+                    "temp": 43,
+                    "soluble": 10
+                }, {
+                    "temp": 45,
+                    "soluble": 5
+                }, {
+                    "temp": 47,
+                    "soluble": .45
+                }]
+            }
+                         ];
+            testCurve = new Mecu(data, {element: "#axis"});
+            testCurve.render();
+
+            testCurve2 = new Mecu(data, {element: "#no-axis"});
+            testCurve2.renderWithoutAxes();
+
+            data.push({
+                "protein" : "SOMEP",
+                "experiment" : "EXP1",
+                "reads" : [{
+                    "temp": 33,
+                    "soluble": 100
+                },{
+                    "temp": 34,
+                    "soluble": 100
+                },{
+                    "temp": 35,
+                    "soluble": 80
+                },{
+                    "temp": 36,
+                    "soluble": 70
+                }, {
+                    "temp": 37,
+                    "soluble": 50
+                }, {
+                    "temp": 39,
+                    "soluble": 50
+                }, {
+                    "temp": 41,
+                    "soluble": 20
+                }, {
+                    "temp": 43,
+                    "soluble": 20
+                }, {
+                    "temp": 45,
+                    "soluble": 10
+                }, {
+                    "temp": 47,
+                    "soluble": 5
+                }]
+            });
+
+            testCurve = new Mecu(data, {element: "#axis-multi"});
+            testCurve.render();
+
+            testCurve2 = new Mecu(data, {element: "#no-axis-multi"});
+            testCurve2.renderWithoutAxes();
+        </script>
+    </body>
+</html>
