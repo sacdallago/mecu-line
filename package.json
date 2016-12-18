@@ -18,8 +18,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo 'Error: no test specified' && exit 1",
-    "build": "browserify -r ./lib/*.js -o build/viz.js",
-    "watch": "watchify -r ./lib/*.js -v -o build/viz.js",
+    "build": "webpack",
+    "watch": "webpack --progress --colors --watch",
     "lint": "jshint -c .jshintrc lib --verbose",
     "install": "echo 'done'"
   },
