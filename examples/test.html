@@ -24,6 +24,7 @@
 
         <script>
             const data = [{
+                "_id": "1",
                 "protein" : "SOMEP",
                 "experiment" : "EXP1",
                 "reads" : [{
@@ -59,13 +60,18 @@
                 }]
             }
                          ];
-            testCurve = new Mecu(data, {element: "#axis"});
-            testCurve.render();
 
-            testCurve2 = new Mecu(data, {element: "#no-axis"});
-            testCurve2.renderWithoutAxes();
+            curves = [];
+            testCurve = new Mecu({element: "#axis", axes: true});
+            testCurve.add(data);
+            curves.push(testCurve);
+
+            testCurve2 = new Mecu({element: "#no-axis"});
+            testCurve2.add(data);
+            curves.push(testCurve2);
 
             data.push({
+                "_id": "2",
                 "protein" : "SOMEP",
                 "experiment" : "EXP1",
                 "reads" : [{
@@ -101,11 +107,13 @@
                 }]
             });
 
-            testCurve = new Mecu(data, {element: "#axis-multi"});
-            testCurve.render();
+            testCurve3 = new Mecu({element: "#axis-multi", axes: true});
+            testCurve3.add(data);
+            curves.push(testCurve3);
 
-            testCurve2 = new Mecu(data, {element: "#no-axis-multi"});
-            testCurve2.renderWithoutAxes();
+            testCurve4 = new Mecu({element: "#no-axis-multi"});
+            testCurve4.add(data);
+            curves.push(testCurve4);
         </script>
     </body>
 </html>
