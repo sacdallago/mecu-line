@@ -16,104 +16,218 @@
         <div style="display:flex">
             <div id="no-axis" class="mecu-el"></div>
             <div id="axis" class="mecu-el"></div>
-            <div id="no-axis-multi" class="mecu-el"></div>
-            <div id="axis-multi" class="mecu-el"></div>
         </div>
 
         <script src="../build/mecu.js"></script>
 
         <script>
-            const data = [{
-                "_id": "1",
-                "protein" : "SOMEP",
-                "experiment" : "EXP1",
-                "reads" : [{
-                    "temp": 33,
-                    "soluble": 100
-                },{
-                    "temp": 34,
-                    "soluble": 100
-                },{
-                    "temp": 35,
-                    "soluble": 100
-                },{
-                    "temp": 36,
-                    "soluble": 100
-                }, {
-                    "temp": 37,
-                    "soluble": 70
-                }, {
-                    "temp": 39,
-                    "soluble": 50
-                }, {
-                    "temp": 41,
-                    "soluble": 20
-                }, {
-                    "temp": 43,
-                    "soluble": 10
-                }, {
-                    "temp": 45,
-                    "soluble": 5
-                }, {
-                    "temp": 47,
-                    "soluble": .45
-                }]
-            }
-                         ];
+            data = [
+                {
+                    "uniprotId": "P56192",
+                    "reads": [
+                        {
+                            "experiment": 2,
+                            "reads": [
+                                {
+                                    "t": 37,
+                                    "r": 0.993418134979102
+                                },
+                                {
+                                    "t": 40,
+                                    "r": 0.929500949919296
+                                },
+                                {
+                                    "t": 43,
+                                    "r": 0.777685824744663
+                                },
+                                {
+                                    "t": 46,
+                                    "r": 0.526748020042036
+                                },
+                                {
+                                    "t": 49,
+                                    "r": 0.289460162283198
+                                },
+                                {
+                                    "t": 52,
+                                    "r": 0.183800390960287
+                                },
+                                {
+                                    "t": 55,
+                                    "r": 0.105687348711846
+                                },
+                                {
+                                    "t": 58,
+                                    "r": 0.0669430966262662
+                                },
+                                {
+                                    "t": 61,
+                                    "r": 0.0499022808465434
+                                },
+                                {
+                                    "t": 64,
+                                    "r": 0.0515747694454481
+                                }
+                            ]
+                        },
+                        {
+                            "experiment": 3,
+                            "reads": [
+                                {
+                                    "t": 37,
+                                    "r": 0.996284044072861
+                                },
+                                {
+                                    "t": 40,
+                                    "r": 0.962510639197222
+                                },
+                                {
+                                    "t": 43,
+                                    "r": 0.873620254799385
+                                },
+                                {
+                                    "t": 46,
+                                    "r": 0.700766876862359
+                                },
+                                {
+                                    "t": 49,
+                                    "r": 0.456499154524345
+                                },
+                                {
+                                    "t": 52,
+                                    "r": 0.242334514428999
+                                },
+                                {
+                                    "t": 55,
+                                    "r": 0.154903209937259
+                                },
+                                {
+                                    "t": 58,
+                                    "r": 0.098569341780109
+                                },
+                                {
+                                    "t": 61,
+                                    "r": 0.0808268431851776
+                                },
+                                {
+                                    "t": 64,
+                                    "r": 0.0691319790711178
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uniprotId": "P56537",
+                    "reads": [
+                        {
+                            "experiment": 2,
+                            "reads": [
+                                {
+                                    "t": 37,
+                                    "r": 0.993418134979102
+                                },
+                                {
+                                    "t": 40,
+                                    "r": 0.986037252223227
+                                },
+                                {
+                                    "t": 43,
+                                    "r": 0.985054294221851
+                                },
+                                {
+                                    "t": 46,
+                                    "r": 0.897991314458943
+                                },
+                                {
+                                    "t": 49,
+                                    "r": 0.806992473655059
+                                },
+                                {
+                                    "t": 52,
+                                    "r": 0.655372197812345
+                                },
+                                {
+                                    "t": 55,
+                                    "r": 0.543572201984383
+                                },
+                                {
+                                    "t": 58,
+                                    "r": 0.43527790185376
+                                },
+                                {
+                                    "t": 61,
+                                    "r": 0.249670377523661
+                                },
+                                {
+                                    "t": 64,
+                                    "r": 0.103041873411224
+                                }
+                            ]
+                        },
+                        {
+                            "experiment": 3,
+                            "reads": [
+                                {
+                                    "t": 37,
+                                    "r": 0.996284044072861
+                                },
+                                {
+                                    "t": 40,
+                                    "r": 0.993529909197705
+                                },
+                                {
+                                    "t": 43,
+                                    "r": 1.01688913043654
+                                },
+                                {
+                                    "t": 46,
+                                    "r": 0.977526752006378
+                                },
+                                {
+                                    "t": 49,
+                                    "r": 0.916806223831925
+                                },
+                                {
+                                    "t": 52,
+                                    "r": 0.774312880836046
+                                },
+                                {
+                                    "t": 55,
+                                    "r": 0.676030757590158
+                                },
+                                {
+                                    "t": 58,
+                                    "r": 0.506988808030527
+                                },
+                                {
+                                    "t": 61,
+                                    "r": 0.301303852165257
+                                },
+                                {
+                                    "t": 64,
+                                    "r": 0.136231587880357
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ];
 
             curves = [];
-            testCurve = new Mecu({element: "#axis", axes: true});
-            testCurve.add(data);
-            curves.push(testCurve);
 
-            testCurve2 = new Mecu({element: "#no-axis"});
-            testCurve2.add(data);
-            curves.push(testCurve2);
+            data.forEach(function (protein) {
+                var testCurve = new Mecu({element: "#axis", axes: true});
+                testCurve.add(protein.reads);
+                curves.push(testCurve);
 
-            data.push({
-                "_id": "2",
-                "protein" : "SOMEP",
-                "experiment" : "EXP1",
-                "reads" : [{
-                    "temp": 33,
-                    "soluble": 100
-                },{
-                    "temp": 34,
-                    "soluble": 100
-                },{
-                    "temp": 35,
-                    "soluble": 80
-                },{
-                    "temp": 36,
-                    "soluble": 70
-                }, {
-                    "temp": 37,
-                    "soluble": 50
-                }, {
-                    "temp": 39,
-                    "soluble": 50
-                }, {
-                    "temp": 41,
-                    "soluble": 20
-                }, {
-                    "temp": 43,
-                    "soluble": 20
-                }, {
-                    "temp": 45,
-                    "soluble": 10
-                }, {
-                    "temp": 47,
-                    "soluble": 5
-                }]
+                var testCurve2 = new Mecu({element: "#no-axis"});
+                testCurve2.add(protein.reads);
+                curves.push(testCurve2);
             });
 
-            testCurve3 = new Mecu({element: "#axis-multi", axes: true});
-            testCurve3.add(data);
-            curves.push(testCurve3);
-
-            testCurve4 = new Mecu({element: "#no-axis-multi"});
-            testCurve4.add(data);
-            curves.push(testCurve4);
         </script>
+
+            });
     </body>
 </html>
