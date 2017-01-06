@@ -13,9 +13,7 @@
 
     <body>
         <div>TEST</div>
-        <div style="display:flex">
-            <div id="no-axis" class="mecu-el"></div>
-            <div id="axis" class="mecu-el"></div>
+        <div id="container" style="display:flex">
         </div>
 
         <script src="../build/mecu.js"></script>
@@ -217,11 +215,24 @@
             curves = [];
 
             data.forEach(function (protein) {
-                var testCurve = new Mecu({element: "#axis", axes: true});
+                var container = document.getElementById("container");
+
+                var element1 = document.createElement("div");
+                var element2 = document.createElement("div");
+
+                element1.setAttribute("id", protein.uniprotId);
+                element1.className='mecu-el';
+                element2.setAttribute("id", protein.uniprotId + "e2");
+                element2.className='mecu-el';
+
+                container.appendChild(element1);
+                container.appendChild(element2);
+
+                var testCurve = new Mecu({element: "#"+protein.uniprotId, axes: true});
                 testCurve.add(protein.reads);
                 curves.push(testCurve);
 
-                var testCurve2 = new Mecu({element: "#no-axis"});
+                var testCurve2 = new Mecu({element: "#"+protein.uniprotId + "e2"});
                 testCurve2.add(protein.reads);
                 curves.push(testCurve2);
             });

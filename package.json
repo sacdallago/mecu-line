@@ -17,7 +17,6 @@
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo 'Error: no test specified' && exit 1",
     "build": "webpack",
     "watch": "webpack --progress --colors --watch",
     "lint": "jshint -c .jshintrc lib --verbose",
