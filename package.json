@@ -15,12 +15,12 @@
     "url": "https://github.com/sacdallago/mecu-viz/issues"
   },
   "license": "Apache-2.0",
-  "main": "lib/index.js",
+  "main": "build/mecu.js",
   "scripts": {
     "build": "webpack",
     "watch": "webpack --progress --colors --watch",
     "lint": "jshint -c .jshintrc lib --verbose",
-    "install": "echo 'done'"
+    "install": "webpack"
   },
   "dependencies": {
     "d3": "^4.4.0"
