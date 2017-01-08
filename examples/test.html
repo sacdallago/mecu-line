@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <div>TEST</div>
+        <h1 style="width: 100%; text-align: center">TEST</h1>
         <div id="container" style="display:flex">
         </div>
 
@@ -229,16 +229,14 @@
                 container.appendChild(element2);
 
                 var testCurve = new Mecu({element: "#"+protein.uniprotId, axes: true});
-                testCurve.add(protein.reads);
+                testCurve.add(protein);
                 curves.push(testCurve);
 
                 var testCurve2 = new Mecu({element: "#"+protein.uniprotId + "e2"});
-                testCurve2.add(protein.reads);
+                testCurve2.add(protein);
                 curves.push(testCurve2);
             });
 
         </script>
-
-            });
     </body>
 </html>
