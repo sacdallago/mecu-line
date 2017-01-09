@@ -13,7 +13,7 @@
 
     <body>
         <h1 style="width: 100%; text-align: center">TEST</h1>
-        <div id="container" style="display:flex">
+        <div id="container">
         </div>
 
         <script src="../build/mecu.js"></script>
@@ -222,7 +222,7 @@
 
                 element1.setAttribute("id", protein.uniprotId);
                 element1.className='mecu-el';
-                element2.setAttribute("id", protein.uniprotId + "e2");
+                element2.setAttribute("id", protein.uniprotId + "2");
                 element2.className='mecu-el';
 
                 container.appendChild(element1);
@@ -232,10 +232,33 @@
                 testCurve.add(protein);
                 curves.push(testCurve);
 
-                var testCurve2 = new Mecu({element: "#"+protein.uniprotId + "e2"});
+                var testCurve2 = new Mecu({element: "#"+protein.uniprotId + "2"});
                 testCurve2.add(protein);
                 curves.push(testCurve2);
             });
+
+            (function(){
+                var container = document.getElementById("container");
+
+                var element1 = document.createElement("div");
+                var element2 = document.createElement("div");
+
+                element1.setAttribute("id", "allcurves");
+                element1.className='mecu-el';
+                element2.setAttribute("id", "allcurvese2");
+                element2.className='mecu-el';
+
+                container.appendChild(element1);
+                container.appendChild(element2);
+
+                var testCurve = new Mecu({element: "#allcurves", axes: true});
+                testCurve.add(data);
+                curves.push(testCurve);
+
+                var testCurve2 = new Mecu({element: "#allcurvese2"});
+                testCurve2.add(data);
+                curves.push(testCurve2);
+            })();
 
         </script>
     </body>
