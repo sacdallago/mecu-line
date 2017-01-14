@@ -16,7 +16,7 @@
         <div id="container">
         </div>
 
-        <script src="../build/mecu.js"></script>
+        <script src="../build/mecu-line.js"></script>
 
         <script>
             data = [
@@ -228,11 +228,11 @@
                 container.appendChild(element1);
                 container.appendChild(element2);
 
-                var testCurve = new Mecu({element: "#"+protein.uniprotId, axes: true});
+                var testCurve = new MecuLine({element: "#"+protein.uniprotId, axes: true});
                 testCurve.add(protein);
                 curves.push(testCurve);
 
-                var testCurve2 = new Mecu({element: "#"+protein.uniprotId + "2"});
+                var testCurve2 = new MecuLine({element: "#"+protein.uniprotId + "2"});
                 testCurve2.add(protein);
                 curves.push(testCurve2);
             });
@@ -251,11 +251,11 @@
                 container.appendChild(element1);
                 container.appendChild(element2);
 
-                var testCurve = new Mecu({element: "#allcurves", axes: true});
+                var testCurve = new MecuLine({element: "#allcurves", axes: true});
                 testCurve.add(data);
                 curves.push(testCurve);
 
-                var testCurve2 = new Mecu({element: "#allcurvese2"});
+                var testCurve2 = new MecuLine({element: "#allcurvese2"});
                 testCurve2.add(data);
                 curves.push(testCurve2);
             })();

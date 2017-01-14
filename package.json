@@ -1,21 +1,21 @@
 {
-  "name": "mecu-viz",
+  "name": "mecu-line",
   "description": "Visualization of protein melting curves",
   "version": "0.1.0",
-  "homepage": "https://github.com/sacdallago/mecu-viz",
+  "homepage": "https://github.com/sacdallago/mecu-line",
   "author": {
     "name": "Christian Dallago",
     "email": "code@dallago.us"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sacdallago/mecu-viz.git"
+    "url": "git://github.com/sacdallago/mecu-line.git"
   },
   "bugs": {
-    "url": "https://github.com/sacdallago/mecu-viz/issues"
+    "url": "https://github.com/sacdallago/mecu-line/issues"
   },
   "license": "Apache-2.0",
-  "main": "build/mecu.js",
+  "main": "build/mecu-line.js",
   "scripts": {
     "build": "webpack",
     "watch": "webpack --progress --colors --watch",
@@ -49,6 +49,8 @@
     "js",
     "bioinformatics",
     "protein",
-    "biojs"
+    "biojs",
+    "mecu",
+    "line"
   ]
 }
