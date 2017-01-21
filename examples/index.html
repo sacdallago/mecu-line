@@ -2,7 +2,7 @@
     <head>
         <style>
             .mecu-el {
-                width: 300px;
+                width: 800px;
                 height: 300px;
                 border: 1px solid black;
                 font-size: 3px;
@@ -73,7 +73,7 @@
                             "reads": [
                                 {
                                     "t": 37,
-                                    "r": 0.996284044072861
+                                    "r": 1.1
                                 },
                                 {
                                     "t": 40,
@@ -109,7 +109,7 @@
                                 },
                                 {
                                     "t": 64,
-                                    "r": 0.0691319790711178
+                                    "r": -0.1
                                 }
                             ]
                         }
@@ -255,11 +255,17 @@
                 testCurve.add(data);
                 curves.push(testCurve);
 
-                var testCurve2 = new MecuLine({element: "#allcurvese2", limit: 4});
+                var testCurve2 = new MecuLine({
+                    element: "#allcurvese2",
+                    limit: 4,
+                    maxTemp: 64,
+                    minTemp: 37.8,
+                    minRatio: 0.0,
+                    maxRatio: 1
+                });
                 testCurve2.add(data);
                 curves.push(testCurve2);
             })();
-
         </script>
     </body>
 </html>
