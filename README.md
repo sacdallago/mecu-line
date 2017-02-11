@@ -1,6 +1,6 @@
 # mecu-line
 
-[![NPM version](http://img.shields.io/npm/v/mecu-viz.svg)](https://www.npmjs.org/package/mecu-viz) 
+[![NPM version](http://img.shields.io/npm/v/mecu-line.svg)](https://www.npmjs.org/package/mecu-line) 
 
 Visualization of protein melting curves
 
@@ -17,7 +17,7 @@ All contributions are welcome.
 
 ## Support
 
-If you have any problem or suggestion please open an issue [here](https://github.com/sacdallago/mecu-line/issues).
+If you have any problem or suggestion please open an issue [here](https://github.com/tpca/mecu-line/issues).
 
 ## License 
 This software is licensed under the Apache 2 license, quoted below.
