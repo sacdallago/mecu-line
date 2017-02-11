@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>My Project</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cayman.min.css">
+    <link rel="stylesheet" href="css/prism.min.css">
+    <link rel="stylesheet" href="css/index.min.css">
+    <link rel="stylesheet" href="css/docs.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Mr. Doc</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>My Project</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="index.html">Main</a></li>
+            <li class="active"><a href="index.js.html">index.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#d3"><i class="alert alert-success"></i><span>d3</span></a>
+              </li>
+              <li><a href="#MecuLine"><i class="alert alert-success"></i><span>MecuLine</span></a>
+              </li>
+              <li><a href="#constructor"><i class="alert alert-success"></i><span>constructor</span></a>
+              </li>
+              <li><a href="#add"><i class="alert alert-info"></i><span>add</span></a>
+              </li>
+              <li><a href="#toggleAxes"><i class="alert alert-info"></i><span>toggleAxes</span></a>
+              </li>
+              <li><a href="#rescale"><i class="alert alert-info"></i><span>rescale</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <section id="d3">
+            <h1>d3</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>&nbsp;</span><span>d3</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>mecu-line<br /><a href="https://github.com/sacdallago/mecu-line">https://github.com/sacdallago/mecu-line</a></p><p>Copyright (c) 2016 Christian Dallago<br />Licensed under the Apache-2.0 license.</p></div>
+          <pre><code class="language-javascript">const d3 = require(&quot;d3&quot;);
+
+
+// Extend string prototypes to allow color hashing
+String.prototype.getHashCode = function() {
+    var hash = 0;
+    if (this.length == 0) return hash;
+    for (var i = 0; i &lt; this.length; i++) {
+        hash = this.charCodeAt(i) + ((hash &lt;&lt; 5) - hash);
+        hash = hash &amp; hash; // Convert to 32bit integer
+    }
+    return hash;
+};
+Number.prototype.intToHSL = function() {
+    var shortened = this % 360;
+    return &quot;hsl(&quot; + shortened + &quot;,100%,40%)&quot;;
+};</code></pre>
+          <section id="MecuLine">
+            <h1>MecuLine</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">class</div><span>&nbsp;</span><span>new MecuLine()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"></div>
+          <pre><code class="language-javascript">class MecuLine {</code></pre>
+          <section id="constructor">
+            <h1>constructor</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">constructor</div><span>&nbsp;</span><span>MecuLine.prototype.constructor()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>opts</td>
+                <td></td>
+                <td><ul>
+<li>an object containing customization parameters. See README for more information</li>
+</ul>
+</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Constructor for a Mecu Line element. This will initialize the element in the DOM, but not add any data to it.</p></div>
+          <pre><code class="language-javascript">constructor(opts) {
+
+    if (typeof(opts) === 'object' &amp;&amp; opts.constructor !== Array) {
+        this.options = opts || {};
+    } else {
+        this.options = {};
+    }
+
+    this.base = this.options.element || &quot;#mecu&quot;;
+    this.data = {};
+
+    // CSS properties
+    var element = document.getElementById(this.base.substr(1, this.base.length));
+    var positionInfo = element.getBoundingClientRect();
+    this.margin = {top: 10, right: 10, bottom: 20, left: 25};
+    this.width = this.options.width || positionInfo.width;
+    this.height = (this.options.height || positionInfo.height) - 10;
+
+    // Adds the svg canvas
+    this.svg = d3.select(this.base)
+        .append(&quot;svg&quot;)
+        .attr(&quot;width&quot;, this.width)
+        .attr(&quot;height&quot;, this.height)
+        .append(&quot;g&quot;);
+
+    this.svg
+        .attr(&quot;width&quot;, this.width)
+        .attr(&quot;height&quot;, this.height)
+        .attr(&quot;transform&quot;, &quot;translate(0,10)&quot;);
+
+    // lineContainer
+    this.lineSvg = this.svg.append(&quot;g&quot;);
+
+    this.x = d3.scaleLinear();
+    this.y = d3.scaleLinear();
+
+    this.x.range([0, this.width-this.margin.left]);
+    this.y.range([this.height - this.margin.top - this.margin.bottom, 0]);
+
+    // Scale the range of the data
+    this.x.domain([this.options.minTemp || 37, this.options.maxTemp || 65]);
+    this.y.domain([(this.options.minRatio !== undefined ? this.options.minRatio : -0.1), this.options.maxRatio || 1.1]);
+
+    this.xAxis = d3.axisBottom(this.x).ticks(this.options.xTicks || 15);
+    this.yAxis = d3.axisLeft(this.y).ticks(this.options.yTicks || 2);
+
+    // Add the X Axis
+    this.xAxisElement = this.svg.append(&quot;g&quot;);
+    this.xAxisElement
+        .attr(&quot;class&quot;, &quot;xAxis&quot;)
+        .attr(&quot;transform&quot;, &quot;translate(&quot; + this.margin.left + &quot;,&quot; + (this.height - this.margin.top - this.margin.bottom) + &quot;)&quot;)
+        .attr(&quot;stroke-width&quot;, &quot;0.1px&quot;)
+
+        .style(&quot;opacity&quot;, &quot;0&quot;)
+        .style(&quot;transition&quot;, &quot;opacity 1s ease&quot;)
+
+        .call(this.xAxis);
+
+    // Add the Y Axis
+    this.yAxisElement = this.svg.append(&quot;g&quot;);
+    this.yAxisElement
+        .attr(&quot;class&quot;, &quot;yAxis&quot;)
+        .attr(&quot;transform&quot;, &quot;translate(&quot; + this.margin.left + &quot;,0)&quot;)
+        .attr(&quot;stroke-width&quot;, &quot;0.1px&quot;)
+
+        .style(&quot;opacity&quot;, &quot;0&quot;)
+        .style(&quot;transition&quot;, &quot;opacity 1s ease&quot;)
+
+        .call(this.yAxis);
+
+    // Toggle axes if in constructor options
+    if (this.options.axes === true) {
+        this.options.axes = false;
+        this.toggleAxes();
+    } else {
+        this.options.axes = false;
+    }
+
+    // Define the lines
+    let self = this;
+    this.valueline = d3.line()
+        .x(function (dataItem) {
+            return self.x(dataItem.t);
+        })
+        .y(function (dataItem) {
+            return self.y(dataItem.r);
+        })
+        .curve(this.options.curveType || d3.curveBasis);
+
+    // Used to count how many lines are currently stored / Like this.data.length, but this.data is object and obj.keys is not supported in safari
+    self.count = 0;
+
+    return;
+}</code></pre>
+          <section id="add">
+            <h1>add</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>MecuLine.prototype.add()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>proteins</td>
+                <td></td>
+                <td><ul>
+<li>and object or array of objects representing a protein melting read. The object must comply with the format {uniprotId:..., reads: [ { experiment:..., reads: [ { t:.., r:... }]}]}</li>
+</ul>
+</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Method to add curves to the initialized graph.</p></div>
+          <pre><code class="language-javascript">add(proteins) {
+    if (typeof(proteins) === 'undefined' || proteins === null || typeof(proteins) !== 'object') {
+        throw &quot;Invalid parameter passed&quot;;
+    }
+    if (proteins.constructor !== Array) {
+        proteins = [proteins];
+    }
+
+    let self = this;
+
+    proteins.forEach(function(protein) {
+        if(typeof(protein.reads) === 'undefined' || protein.reads === null || typeof(protein.reads) !== 'object'){
+            throw &quot;Protein &quot; + protein.uniprotId + &quot; has bad formatted reads.&quot;;
+        }
+        if (protein.reads.constructor !== Array) {
+            protein.reads = [protein.reads];
+        }
+
+        protein.reads.forEach(function(read) {
+            if(self.count+1 &gt; self.options.limit){
+                return;
+            }
+
+            let currentCurveId = protein.uniprotId+&quot;-E&quot;+read.experiment;
+
+            if(self.data[currentCurveId] === undefined){
+                let current = (function(p, r) {
+                    let t = {};
+                    for(let k in p){
+                        if(k != &quot;reads&quot;){
+                            t[k] = p.k;
+                        }
+                    }
+                    t.reads = [read];
+                    return t;
+                })(protein);
+
+                self.data[currentCurveId] = current;
+                self.count++;
+
+                // Add the valueline path.
+                self.lineSvg.append(&quot;path&quot;)
+                    .attr(&quot;class&quot;, &quot;line MECU&quot;+currentCurveId)
+                    .attr(&quot;fill&quot;, &quot;none&quot;)
+                    .attr(&quot;transform&quot;, &quot;translate(&quot; + self.margin.left + &quot;,0)&quot;)
+                    .attr(&quot;stroke&quot;, self.options.strokeColor || (currentCurveId).getHashCode().intToHSL() || &quot;steelblue&quot;)
+                    .attr(&quot;stroke-width&quot;, self.options.strokeWidth || '1em')
+                    .attr(&quot;d&quot;, self.valueline(self.data[currentCurveId].reads[0].reads))
+                    .style(&quot;stroke-linecap&quot;, &quot;round&quot;);
+            }
+        });
+    });
+}</code></pre>
+          <section id="toggleAxes">
+            <h1>toggleAxes</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>MecuLine.prototype.toggleAxes()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Calling this on the object will toggle the X and Y axes</p></div>
+          <pre><code class="language-javascript">toggleAxes() {
+    if(this.options.axes){
+        this.yAxisElement.style(&quot;opacity&quot;, &quot;0&quot;);
+        this.xAxisElement.style(&quot;opacity&quot;, &quot;0&quot;);
+    } else {
+        this.yAxisElement.style(&quot;opacity&quot;, &quot;1&quot;);
+        this.xAxisElement.style(&quot;opacity&quot;, &quot;1&quot;);
+    }
+
+    this.options.axes = !this.options.axes;
+}</code></pre>
+          <section id="rescale">
+            <h1>rescale</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>MecuLine.prototype.rescale()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>min</td>
+                <td></td>
+                <td><ul>
+<li>The minimum temperature to be represented in the graph (In C)</li>
+</ul>
+</td>
+              </tr>
+              <tr>
+                <td>max-</td>
+                <td></td>
+                <td><p>The maximum temperature to be represented in the graph (In C)</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Function to scale the X axis of the graph to different max and min temperatures</p></div>
+          <pre><code class="language-javascript">rescale(min, max) {
+    if(min === 0){
+        min = min + &quot;&quot;;
+    }
+    if(max === 0){
+        max = max + &quot;&quot;;
+    }
+    this.x.domain([min || 30, max || 80]);
+
+    this.xAxisElement
+        .transition().duration(1500).ease(d3.easeSinInOut)  // https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_ease
+        .call(this.xAxis);
+
+    for (let k in this.data) {
+        // Add the valueline path.
+        this.lineSvg.select(&quot;.MECU&quot;+k)
+            .transition().duration(1500).ease(d3.easeSinInOut)
+            .attr(&quot;d&quot;, this.valueline(this.data[k].reads[0].reads));
+    }
+}
+}
+
+module.exports = MecuLine;</code></pre>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/mr-doc/mr-doc">Mr. Doc </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Mr. Doc is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="js/twitter-widget.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-transition.min.js"></script>
+    <script src="js/bootstrap-scrollspy.min.js"></script>
+    <script src="js/bootstrap-dropdown.min.js"></script>
+    <script src="js/bootstrap-collapse.min.js"></script>
+    <script src="js/bootstrap-affix.min.js"></script>
+    <script src="js/prism.min.js"></script>
+    <script src="js/index.min.js"></script>
+  </body>
+</html>
