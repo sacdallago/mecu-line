@@ -20,7 +20,7 @@
     "build": "webpack",
     "watch": "webpack --progress --colors --watch",
     "docs": "mr-doc -s lib/ -o docs/ -n 'MeCu Line'",
-    "install": "webpack"
+    "prepublish": "webpack"
   },
   "dependencies": {
     "d3": "^4.4.0"
