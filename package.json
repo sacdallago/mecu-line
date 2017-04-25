@@ -26,9 +26,16 @@
     "d3": "^4.4.0"
   },
   "devDependencies": {
+    "babel": "latest",
+    "babel-core": "latest",
+    "babel-loader": "latest",
+    "babel-polyfill": "latest",
+    "babel-preset-es2015": "latest",
     "watchify": "latest",
     "webpack": "latest",
-    "mr-doc": "latest"
+    "mr-doc": "latest",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2016": "^6.16.0"
   },
   "keywords": [
     "biojs",
