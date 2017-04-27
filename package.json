@@ -1,7 +1,7 @@
 {
   "name": "mecu-line",
   "description": "Visualization of protein melting curves",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "homepage": "https://github.com/tpca/mecu-line",
   "author": {
     "name": "Christian Dallago",
