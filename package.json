@@ -28,14 +28,15 @@
   "devDependencies": {
     "babel": "latest",
     "babel-core": "latest",
-    "babel-loader": "latest",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-polyfill": "latest",
     "babel-preset-es2015": "latest",
+    "babel-preset-es2016": "^6.16.0",
+    "mr-doc": "latest",
     "watchify": "latest",
     "webpack": "latest",
-    "mr-doc": "latest",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-es2016": "^6.16.0"
+    "webpack-cli": "^3.3.0"
   },
   "keywords": [
     "biojs",
